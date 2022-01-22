@@ -126,7 +126,7 @@ var _ = Describe("dnsname tests", func() {
 			}
 			Expect(reflect.DeepEqual(expectedFileNames, resultingFileNames)).To(BeTrue())
 
-			d, err := newDNSMasqFile("foobar.io", "dummy0", "test")
+			d, err := newDNSMasqFile("foobar.io", "dummy0", "test", map[string]string{})
 			Expect(err).To(BeNil())
 
 			// Check that the dns masq instance is running
@@ -166,7 +166,7 @@ var _ = Describe("dnsname tests", func() {
 			_, err = current.GetResult(r)
 			Expect(err).NotTo(HaveOccurred())
 
-			d, err := newDNSMasqFile("foobar.io", "dummy0", "test")
+			d, err := newDNSMasqFile("foobar.io", "dummy0", "test", map[string]string{})
 			Expect(err).To(BeNil())
 
 			pid, err := d.getProcess()

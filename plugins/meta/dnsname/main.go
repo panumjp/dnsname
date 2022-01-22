@@ -56,7 +56,7 @@ func cmdAdd(args *skel.CmdArgs) error {
 	if err != nil {
 		return err
 	}
-	dnsNameConf, err := newDNSMasqFile(netConf.DomainName, result.Interfaces[0].Name, netConf.Name)
+	dnsNameConf, err := newDNSMasqFile(netConf.DomainName, result.Interfaces[0].Name, netConf.Name, netConf.Servers)
 	if err != nil {
 		return err
 	}
@@ -118,7 +118,7 @@ func cmdDel(args *skel.CmdArgs) error {
 	} else if result == nil {
 		return nil
 	}
-	dnsNameConf, err := newDNSMasqFile(netConf.DomainName, result.Interfaces[0].Name, netConf.Name)
+	dnsNameConf, err := newDNSMasqFile(netConf.DomainName, result.Interfaces[0].Name, netConf.Name, netConf.Servers)
 	if err != nil {
 		logrus.Error(err)
 		return nil
@@ -187,7 +187,7 @@ func cmdCheck(args *skel.CmdArgs) error {
 	if result == nil {
 		return errors.Errorf("Required prevResult missing")
 	}
-	dnsNameConf, err := newDNSMasqFile(netConf.DomainName, result.Interfaces[0].Name, netConf.Name)
+	dnsNameConf, err := newDNSMasqFile(netConf.DomainName, result.Interfaces[0].Name, netConf.Name, netConf.Servers)
 	if err != nil {
 		return err
 	}

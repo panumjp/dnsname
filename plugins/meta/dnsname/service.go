@@ -15,7 +15,7 @@ import (
 )
 
 // newDNSMasqFile creates a new instance of a dnsNameFile
-func newDNSMasqFile(domainName, networkInterface, networkName string) (dnsNameFile, error) {
+func newDNSMasqFile(domainName, networkInterface, networkName string, servers map[string]string) (dnsNameFile, error) {
 	dnsMasqBinary, err := exec.LookPath("dnsmasq")
 	if err != nil {
 		return dnsNameFile{}, errors.Errorf("the dnsmasq cni plugin requires the dnsmasq binary be in PATH")
@@ -27,6 +27,7 @@ func newDNSMasqFile(domainName, networkInterface, networkName string) (dnsNameFi
 		NetworkInterface: networkInterface,
 		AddOnHostsFile:   makePath(networkName, hostsFileName),
 		Binary:           dnsMasqBinary,
+		Servers:          servers,
 	}
 	return masqConf, nil
 }
